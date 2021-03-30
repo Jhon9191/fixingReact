@@ -33,13 +33,19 @@ class App extends Component {
 
   //executa sempre quando algo é alterado
   componentDidUpdate(){
+    //clearTimeout(this.timeoutUpdate);
     this.handleTimeOut(); 
+  }
+
+  //Desmontar os componentes
+  componentWillUnmount(){
+    clearTimeout(this.timeoutUpdate);
   }
 
   handleTimeOut = () => {
     const { posts, counter } = this.state;
     posts[0].title = "Novo titulo"
-    setTimeout(() => {
+    this.timeoutUpdate = setTimeout(() => {
       this.setState({ posts, counter: counter+1 });
     }, 5000);
   }
