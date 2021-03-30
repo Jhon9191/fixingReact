@@ -16,7 +16,6 @@ class App extends Component {
   //Executa quando abre a aplicação
   componentDidMount() {
     this.loadPosts();
-    console.log(this.posts)
   }
 
   loadPosts = async () => {
@@ -42,7 +41,13 @@ class App extends Component {
       <section className="container">
         <div className="posts">
           {posts.map(post => (
-           <PostCard/>
+            <PostCard
+              key={post.id}
+              id={post.id}
+              cover={post.cover}
+              title={post.title}
+              body={post.body}
+            />
           ))}
         </div>
       </section>
