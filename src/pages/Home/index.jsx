@@ -29,7 +29,13 @@ export class Home extends Component {
     }
 
     loadMorePosts = () => {
-       
+        const { page ,postPerPege, posts, allPosts } = this.state;
+
+        const nextPage = page + postPerPege;
+        const nextPost = allPosts.slice(nextPage, nextPage+postPerPege)
+        posts.push(...nextPost);
+
+        this.setState({ posts, page: nextPage })
     }
 
     render() {
