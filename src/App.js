@@ -24,7 +24,15 @@ class App extends Component {
     ]
   };
 
+  timeoutUpdate = null;
+
+  //Executa quando abre a aplicação
   componentDidMount() {
+    this.handleTimeOut(); 
+  }
+
+  //executa sempre quando algo é alterado
+  componentDidUpdate(){
     this.handleTimeOut(); 
   }
 
@@ -32,7 +40,6 @@ class App extends Component {
     const { posts, counter } = this.state;
     posts[0].title = "Novo titulo"
     setTimeout(() => {
-
       this.setState({ posts, counter: counter+1 });
     }, 5000);
   }
