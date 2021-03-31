@@ -4,6 +4,7 @@ import { Component } from 'react'
 import { loadPosts } from '../../utils/loadPost';
 import { Posts } from '../../components/PostList';
 import { Button } from '../../components/Button';
+import { TextInput } from '../../components/TextInput';
 
 export class Home extends Component {
 
@@ -62,12 +63,10 @@ export class Home extends Component {
                         <h1>Search value: {search}</h1>
                     </>
                 )}
-                <input
-                    value={search}
-                    onChange={this.handleChange}
-                    type="search" />
-                <br /><br />
 
+                <TextInput search={search} handleChange={this.handleChange}/>
+
+                <br /><br />
                 {filteredPosts.length === 0 && (
                     <h1>Sorry, don't have any posts :(</h1>
                 )}
