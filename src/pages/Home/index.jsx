@@ -40,7 +40,7 @@ export class Home extends Component {
     }
 
     handleChange = (e) => {
-        const {value} = e.target;
+        const { value } = e.target;
         this.setState({ search: value })
     }
 
@@ -49,19 +49,25 @@ export class Home extends Component {
         const noMorePosts = page + postPerPege >= allPosts.length;
         return (
             <section className="container">
-                <h1>Search value: {search}</h1>
-                <input 
-                value={search}
-                onChange={this.handleChange}
-                type="search"/>
-                <br/><br/>
+                {!!search && (
+                    <>
+                        <h1>Search value: {search}</h1>
+                    </>
+                )}
+                <input
+                    value={search}
+                    onChange={this.handleChange}
+                    type="search" />
+                <br /><br />
                 <Posts posts={posts} />
                 <div className="button-container">
-                    <Button
-                        disabled={noMorePosts}
-                        name="Adicionar"
-                        onClick={this.loadMorePosts}
-                    />
+                    {!search && (
+                            <Button
+                                disabled={noMorePosts}
+                                name="Adicionar"
+                               onClick={this.loadMorePosts}
+                            />
+                    )}
                 </div>
             </section>
         )
