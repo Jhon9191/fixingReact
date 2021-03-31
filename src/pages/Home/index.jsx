@@ -47,6 +47,14 @@ export class Home extends Component {
     render() {
         const { posts, page, postPerPege, allPosts, search } = this.state;
         const noMorePosts = page + postPerPege >= allPosts.length;
+
+        const filteredPosts = !!search ? allPosts.filter(post =>{
+            return post.title.toLowerCase().includes(
+                search.toLowerCase()
+            );
+        }) 
+        : posts;
+
         return (
             <section className="container">
                 {!!search && (
@@ -59,7 +67,13 @@ export class Home extends Component {
                     onChange={this.handleChange}
                     type="search" />
                 <br /><br />
-                <Posts posts={posts} />
+
+                {filteredPosts.length === 0 && (
+                    <h1>Sorry, don't have any posts :(</h1>
+                )}
+                {filteredPosts.length > 0 && (    
+                    <Posts posts={filteredPosts} />
+                )}
                 <div className="button-container">
                     {!search && (
                             <Button
