@@ -12,4 +12,14 @@ describe('<Button/>', () => {
         expect(button).toBeInTheDocument();
     });
 
+    it('Should call function on button click', () => {
+        const fn = jest.fn();
+        render(<Button name="Load more" onClick={fn} />);
+
+        const button = screen.getByRole('button', { name: /load more/i });
+        userEvent.click(button)
+
+        expect(fn).toHaveBeenCalledTimes(1);
+    });
+
 });
